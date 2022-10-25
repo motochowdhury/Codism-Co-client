@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import profile from "../assets/profile.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -78,14 +79,25 @@ const Header = () => {
                 </Link>
               )}
             </li>
+            <li>
+              {user?.imageURl ? (
+                <img
+                  className="w-12 h-12 rounded-full"
+                  src={user.imageURL}
+                  alt=""
+                />
+              ) : (
+                <img className="w-12 h-12 rounded-full" src={profile} alt="" />
+              )}
+            </li>
           </ul>
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
             <button
               aria-label="Open Menu"
               title="Open Menu"
               className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
               onClick={() => setIsMenuOpen(true)}>
-              <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+              <svg className="w-6 text-gray-300" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
                   d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -100,6 +112,19 @@ const Header = () => {
                 />
               </svg>
             </button>
+            {user?.imageURl ? (
+              <img
+                className="w-10 h-10 rounded-full ml-3"
+                src={user.imageURL}
+                alt=""
+              />
+            ) : (
+              <img
+                className="w-10 h-10 rounded-full ml-3"
+                src={profile}
+                alt=""
+              />
+            )}
             {isMenuOpen && (
               <div className="absolute top-0 left-0 w-full">
                 <div className="p-5 bg-white border rounded shadow-sm">
