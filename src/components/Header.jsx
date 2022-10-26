@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../assets/logo.png";
 import profile from "../assets/profile.jpg";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const user = true;
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
+  const logOutUser = () => {
+    logOut()
+      .then(() => {
+        toast.success("Successfully Loged Out");
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div className="bg-gray-700">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -62,6 +73,14 @@ const Header = () => {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               {user?.uid ? (
+                <button
+                  onClick={logOutUser}
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
+                  aria-label="Log Out"
+                  title="Log Out">
+                  Log Out
+                </button>
+              ) : (
                 <Link
                   to="/login"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
@@ -69,33 +88,28 @@ const Header = () => {
                   title="Sign up">
                   Sign up
                 </Link>
-              ) : (
-                <button
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
-                  aria-label="Log Out"
-                  title="Log Out">
-                  Log Out
-                </button>
               )}
             </li>
-            <li>
-              {user?.uid && user?.imageURl ? (
-                <img
-                  title={user?.displayName}
-                  data-tooltip-target="tooltip-animation"
-                  className="w-12 h-12 rounded-full"
-                  src={user.imageURL}
-                  alt=""
-                />
-              ) : (
-                <img
-                  title={user?.displayName}
-                  className="w-12 h-12 rounded-full"
-                  src={profile}
-                  alt=""
-                />
-              )}
-            </li>
+            {user?.uid && (
+              <li>
+                {user?.photoURL ? (
+                  <img
+                    title={user?.displayName}
+                    data-tooltip-target="tooltip-animation"
+                    className="w-12 h-12 rounded-full"
+                    src={user.photoURL}
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    title={user?.displayName}
+                    className="w-12 h-12 rounded-full"
+                    src={profile}
+                    alt=""
+                  />
+                )}
+              </li>
+            )}
           </ul>
           <div className="lg:hidden flex items-center">
             <button
@@ -202,20 +216,20 @@ const Header = () => {
                       </li>
                       <li>
                         {user?.uid ? (
-                          <Link
-                            to="/"
+                          <button
+                            onClick={logOutUser}
                             className="inline-flex items-center justify-center w-[30%] h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
                             aria-label="Sign up"
                             title="Sign up">
-                            Sign up
-                          </Link>
+                            Log Out
+                          </button>
                         ) : (
                           <Link
                             to="/"
                             className="inline-flex items-center justify-center w-[30%] h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
                             aria-label="Sign up"
                             title="Sign up">
-                            Log Out
+                            Sign up
                           </Link>
                         )}
                       </li>
