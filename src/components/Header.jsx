@@ -80,15 +80,29 @@ const Header = () => {
               )}
             </li>
             <li>
-              {user?.imageURl ? (
+              {user?.uid && user?.imageURl ? (
                 <img
+                  title={user?.displayName}
+                  data-tooltip-target="tooltip-animation"
                   className="w-12 h-12 rounded-full"
                   src={user.imageURL}
                   alt=""
                 />
               ) : (
-                <img className="w-12 h-12 rounded-full" src={profile} alt="" />
+                <img
+                  title={user?.displayName}
+                  className="w-12 h-12 rounded-full"
+                  src={profile}
+                  alt=""
+                />
               )}
+              <div
+                id="tooltip-animation"
+                role="tooltip"
+                class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                Tooltip content
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
             </li>
           </ul>
           <div className="lg:hidden flex items-center">
@@ -112,7 +126,7 @@ const Header = () => {
                 />
               </svg>
             </button>
-            {user?.imageURl ? (
+            {user?.uid && user?.imageURl ? (
               <img
                 className="w-10 h-10 rounded-full ml-3"
                 src={user.imageURL}
