@@ -1,8 +1,11 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import hero from "../assets/hero.jpg";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   return (
     <>
       <div className="flex flex-col lg:flex-row w-[80%] mx-auto mt-10">

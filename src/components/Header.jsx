@@ -63,20 +63,19 @@ const Header = () => {
             <li>
               {user?.uid ? (
                 <Link
-                  to="/"
+                  to="/login"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
                   aria-label="Sign up"
                   title="Sign up">
                   Sign up
                 </Link>
               ) : (
-                <Link
-                  to="/"
+                <button
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
                   aria-label="Log Out"
                   title="Log Out">
                   Log Out
-                </Link>
+                </button>
               )}
             </li>
             <li>
@@ -96,13 +95,6 @@ const Header = () => {
                   alt=""
                 />
               )}
-              <div
-                id="tooltip-animation"
-                role="tooltip"
-                class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                Tooltip content
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
             </li>
           </ul>
           <div className="lg:hidden flex items-center">
