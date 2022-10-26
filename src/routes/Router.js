@@ -3,6 +3,7 @@ import Blogs from "../components/Blogs";
 import CheckOut from "../components/CheckOut";
 import CourseDetails from "../components/CourseDetails";
 import Courses from "../components/Courses";
+import ErrorPage from "../components/ErrorPage";
 import FAQ from "../components/FAQ";
 import Home from "../components/Home";
 import Login from "../components/Login";
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
