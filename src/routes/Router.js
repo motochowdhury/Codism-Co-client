@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blogs from "../components/Blogs";
+import CourseDetails from "../components/CourseDetails";
 import Courses from "../components/Courses";
 import FAQ from "../components/FAQ";
 import Home from "../components/Home";
@@ -23,6 +24,13 @@ export const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />,
+        loader: () => fetch("https://codism-co-server.vercel.app/categories"),
+      },
+      {
+        path: "/course/:id",
+        element: <CourseDetails />,
+        loader: ({ params }) =>
+          fetch(`https://codism-co-server.vercel.app/course/${params.id}`),
       },
       {
         path: "/blogs",

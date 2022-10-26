@@ -130,19 +130,24 @@ const Header = () => {
                 />
               </svg>
             </button>
-            {user?.uid && user?.photoURL ? (
-              <img
-                className="w-10 h-10 rounded-full ml-3"
-                src={user?.photoURL}
-                alt=""
-              />
-            ) : (
-              <img
-                className="w-10 h-10 rounded-full ml-3"
-                src={profile}
-                alt=""
-              />
+            {user?.uid && (
+              <>
+                {user?.photoURL ? (
+                  <img
+                    className="w-10 h-10 rounded-full ml-3"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className="w-10 h-10 rounded-full ml-3"
+                    src={profile}
+                    alt=""
+                  />
+                )}
+              </>
             )}
+            ;
             {isMenuOpen && (
               <div className="absolute top-0 left-0 w-full">
                 <div className="p-5 bg-white border rounded shadow-sm">
@@ -223,7 +228,7 @@ const Header = () => {
                           </button>
                         ) : (
                           <Link
-                            to="/"
+                            to="/login"
                             className="inline-flex items-center justify-center w-[30%] h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md  bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none"
                             aria-label="Sign up"
                             title="Sign up">
