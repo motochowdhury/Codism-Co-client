@@ -28,6 +28,7 @@ const Login = () => {
   const googleLogin = () => {
     loginWithGoogle()
       .then(() => {
+        navigate(from, { replace: true });
         toast.success("Loged in Successfull");
       })
       .catch((error) => toast.error(error.message));
