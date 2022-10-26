@@ -47,6 +47,8 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+        loader: () =>
+          fetch("https://codism-co-server-mottalib68.vercel.app/blogs"),
       },
       {
         path: "/faq",

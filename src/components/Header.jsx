@@ -87,6 +87,24 @@ const Header = () => {
                 </Link>
               )}
             </li>
+            <li>
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  className="peer
+    appearance-none cursor-pointer
+    border border-gray-300 rounded-full
+    checked:border-gray-900 w-12 h-6"
+                />
+                <span
+                  className="peer-checked:left-7
+    peer-checked:bg-gray-900
+    transition-all duration-200
+    pointer-events-none w-4 h-4
+    block absolute top-1 left-1
+    rounded-full bg-gray-300"></span>
+              </div>
+            </li>
             {user?.uid && (
               <li>
                 {user?.photoURL ? (
