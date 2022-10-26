@@ -128,7 +128,7 @@ const Register = () => {
         </button>
       </div>
       <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-        Don't have an account?
+        Already have an account?
         <Link
           rel="noopener noreferrer"
           to="/login"
