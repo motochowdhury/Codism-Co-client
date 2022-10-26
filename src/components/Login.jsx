@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, loginWithGithub, loginWithGoogle } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
   const loginWithEmailPass = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,9 +17,27 @@ const Login = () => {
 
     loginUser(email, pass)
       .then(() => {
+        navigate("/" || "/register");
         toast.success("Login successfull");
       })
       .catch((error) => toast.error(error.message));
+  };
+  const googleLogin = () => {
+    loginWithGoogle()
+      .then(() => {
+        toast.success("Loged in Successfull");
+      })
+      .catch((error) => toast.error(error.message));
+  };
+  const githubLogin = () => {
+    loginWithGithub()
+      .then(() => {
+        toast.success("Loged in Successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
   };
   return (
     <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 mx-auto mt-8">
@@ -67,10 +87,16 @@ const Login = () => {
         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
       </div>
       <div className="flex justify-center space-x-4">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button
+          onClick={googleLogin}
+          aria-label="Log in with Google"
+          className="p-3 rounded-sm">
           <FaGoogle className="text-2xl" />
         </button>
-        <button aria-label="Log in with GitHub" className="p-3 rounded-sm">
+        <button
+          onClick={githubLogin}
+          aria-label="Log in with GitHub"
+          className="p-3 rounded-sm">
           <FaGithub className="text-2xl" />
         </button>
       </div>

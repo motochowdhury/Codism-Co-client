@@ -63,8 +63,6 @@ const Header = () => {
             <li>
               <Link
                 to="/faq"
-                aria-label="Product pricing"
-                title="Product pricing"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">
                 FAQ
               </Link>
@@ -94,15 +92,15 @@ const Header = () => {
               <li>
                 {user?.photoURL ? (
                   <img
-                    title={user?.displayName}
+                    title={user?.displayName || "Null"}
                     data-tooltip-target="tooltip-animation"
                     className="w-12 h-12 rounded-full"
-                    src={user.photoURL}
+                    src={user?.photoURL}
                     alt=""
                   />
                 ) : (
                   <img
-                    title={user?.displayName}
+                    title={user?.displayName || "Null"}
                     className="w-12 h-12 rounded-full"
                     src={profile}
                     alt=""
@@ -132,10 +130,10 @@ const Header = () => {
                 />
               </svg>
             </button>
-            {user?.uid && user?.imageURl ? (
+            {user?.uid && user?.photoURL ? (
               <img
                 className="w-10 h-10 rounded-full ml-3"
-                src={user.imageURL}
+                src={user?.photoURL}
                 alt=""
               />
             ) : (
