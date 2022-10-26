@@ -1,5 +1,5 @@
 import React from "react";
-import { MdDownloading } from "react-icons/md";
+import { MdAdsClick, MdDownloading } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 import ReactToPdf from "react-to-pdf";
 
@@ -36,9 +36,12 @@ const CourseDetails = () => {
           </div>
         </div>
         <p className="dark:text-gray-100 mb-7">{desc}</p>
-        <div className="w-full">
-          <Link className="py-2 px-8 bg-blue-500 mx-auto">
-            Get premium access
+        <div className="flex justify-center">
+          <Link
+            to={`/checkout/${id}`}
+            className="rounded-lg py-2 px-8 bg-blue-500 mx-auto flex items-center uppercase font-semibold hover:bg-blue-700">
+            <MdAdsClick className="mr-3 text-2xl text-gray-800" /> Get premium
+            access
           </Link>
         </div>
       </div>
