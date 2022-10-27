@@ -4,9 +4,13 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
-  const { loginUser, loginWithGithub, loginWithGoogle } =
+  const { loginUser, loginWithGithub, loginWithGoogle, resetPass } =
     useContext(AuthContext);
   let navigate = useNavigate();
   let location = useLocation();
@@ -23,6 +27,10 @@ const Login = () => {
         navigate(from, { replace: true });
         toast.success("Login successfull");
       })
+      .catch((error) => toast.error(error.message));
+
+    resetPass(email)
+      .then(() => toast.success("Link sent In your Email"))
       .catch((error) => toast.error(error.message));
   };
   const googleLogin = () => {
@@ -43,6 +51,7 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+
   return (
     <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 mx-auto mt-8">
       <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -76,7 +85,7 @@ const Login = () => {
             border dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
           />
           <div className="flex justify-end text-xs dark:text-gray-400">
-            <button>Forgot Password?</button>
+            <button type="click">Forgot Password?</button>
           </div>
         </div>
         <button className="block w-[50%] mx-auto p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">

@@ -6,6 +6,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -43,6 +44,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+  const resetPass = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
   const profileUpdate = (name, phtoUrl) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
@@ -69,6 +74,7 @@ const AuthProvider = ({ children }) => {
     loading,
     loginWithGoogle,
     loginWithGithub,
+    resetPass,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -4,7 +4,7 @@ import hero from "../assets/hero.jpg";
 
 const Home = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <div className="flex flex-col lg:flex-row w-[80%] mx-auto mt-10">
         <div className="w-[90%] lg:w-[50%] mx-auto mt-8 lg:flex lg:items-center lg:mr-7">
           <div>
@@ -29,7 +29,7 @@ const Home = () => {
           <img className="w-full rounded-xl mt-10" src={hero} alt="" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
